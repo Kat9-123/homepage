@@ -62,6 +62,6 @@ describe("widgets/syncthing/component", () => {
     expectBlockValue(container, "syncthing.connected", 1);
     expectBlockValue(container, "syncthing.synced", 75);
     expectBlockValue(container, "syncthing.errors", 2);
-    expectBlockValue(container, "syncthing.storage", "1234567")
+    expectBlockValue(container, "syncthing.storage", "1234567");
   });
 });

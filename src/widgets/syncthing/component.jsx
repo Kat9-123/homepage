@@ -32,11 +32,18 @@ export default function Component({ service }) {
 
   return (
     <Container service={service}>
-      <Block label="syncthing.connected" value={`${t("common.number", { value: connections.filter(c => c.connected).length })} / ${t("common.number", { value: connections.length })}`} />
+      <Block
+        label="syncthing.connected"
+        value={`${t("common.number", { value: connections.filter((c) => c.connected).length })} / ${t("common.number", { value: connections.length })}`}
+      />
       <Block label="syncthing.synced" value={t("common.percent", { value: completionData.completion })} />
-      <Block label="syncthing.errors" value={t("common.number", { value: errorData.errors ? errorData.errors.length : 0 })} />
-      <Block label="syncthing.storage" value={t("common.bytes",
-      	{ value: completionData.globalBytes, maximumFractionDigits: 1, binary: true })}
+      <Block
+        label="syncthing.errors"
+        value={t("common.number", { value: errorData.errors ? errorData.errors.length : 0 })}
+      />
+      <Block
+        label="syncthing.storage"
+        value={t("common.bytes", { value: completionData.globalBytes, maximumFractionDigits: 1, binary: true })}
       />
     </Container>
   );
