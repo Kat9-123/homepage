@@ -1,7 +1,7 @@
-import { useTranslation } from "next-i18next";
-
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+import { useTranslation } from "next-i18next/pages";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -16,7 +16,7 @@ export default function Component({ service }) {
   if (connectionError || completionError || errorError) {
     return <Container service={service} error={connectionError ?? completionError ?? errorError} />;
   }
-  
+
   if (!connectionData || !completionData || !errorData) {
     return (
       <Container service={service}>
@@ -27,9 +27,9 @@ export default function Component({ service }) {
       </Container>
     );
   }
-  
+
   const connections = Object.values(connectionData.connections);
-  
+
   return (
     <Container service={service}>
       <Block label="syncthing.connected" value={`${t("common.number", { value: connections.filter(c => c.connected).length })} / ${t("common.number", { value: connections.length })}`} />
