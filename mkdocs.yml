@@ -162,8 +162,8 @@ nav:
           - widgets/services/stocks.md
           - widgets/services/suwayomi.md
           - widgets/services/swagdashboard.md
-          - widgets/services/syncthing.md
           - widgets/services/syncthing-relay-server.md
+          - widgets/services/syncthing.md
           - widgets/services/tailscale.md
           - widgets/services/tandoor.md
           - widgets/services/technitium.md
