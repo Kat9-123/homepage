@@ -11,5 +11,5 @@ Allowed fields: `["connected", "synced", "errors", "storage"]`.
 widget:
   type: syncthing
   url: http://syncthing.host.or.ip
-  key: API_KEY_HERE
+  key: syncthingapikey
 ```
