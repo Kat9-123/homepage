@@ -64,4 +64,30 @@ describe("widgets/syncthing/component", () => {
     expectBlockValue(container, "syncthing.errors", 2);
     expectBlockValue(container, "syncthing.storage", "1234567");
   });
+
+  it.each(["connections", "completion", "error"])("renders errors from the %s endpoint", (endpoint) => {
+    useWidgetAPI.mockImplementation((_widget, requestedEndpoint) => ({
+      data: undefined,
+      error: requestedEndpoint === endpoint ? `${endpoint} failed` : undefined,
+    }));
+
+    const { container } = renderWithProviders(<Component service={{ widget: { type: "syncthing" } }} />, {
+      settings: { hideErrors: false },
+    });
+
+    expect(container.textContent).toContain(`${endpoint} failed`);
+  });
+
+  it("renders zero when there are no errors", () => {
+    useWidgetAPI
+      .mockReturnValueOnce({ data: { connections: {} }, error: undefined })
+      .mockReturnValueOnce({ data: { completion: 100, globalBytes: 0 }, error: undefined })
+      .mockReturnValueOnce({ data: {}, error: undefined });
+
+    const { container } = renderWithProviders(<Component service={{ widget: { type: "syncthing" } }} />, {
+      settings: { hideErrors: false },
+    });
+
+    expectBlockValue(container, "syncthing.errors", 0);
+  });
 });
